@@ -1,11 +1,11 @@
 :root{
-  --bg: #0b1020;           /* fundo escuro para TV */
-  --card: #111935;         /* cartões */
-  --ink: #e9eefc;          /* texto claro */
-  --muted: #a8b2d1;        /* texto secundário */
+  --bg: #007e7a;           /* fundo escuro para TV */
+  --card: #003e3d;         /* cartões */
+  --ink: #f6f6f6;          /* texto claro */
+  --muted: ##003e3d;        /* texto secundário */
   --brand: #007E7A;        /* azul brand sugerido */
   --ok: #1aa36f;
-  --shadow: rgba(0,0,0,.25);
+  --shadow: rgba(21, 21, 21, 0.25);
 }
 
 *{ box-sizing: border-box; }
@@ -14,14 +14,14 @@ body{
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--ink);
-  background: radial-gradient(1200px 600px at 20% 0%, #0f1640 0%, var(--bg) 55%);
+  background: radial-gradient(1200px 600px at 20% 0%, #003e3d 0%, var(--bg) 55%);
 }
 
 /* GRID PRINCIPAL */
 .tv{
   display: grid;
   grid-template-rows: auto 1fr auto;
-  height: 100vh;
+  height: 180vh;
   overflow: hidden;
 }
 
@@ -30,18 +30,30 @@ body{
   align-items: center;
   justify-content: space-between;
   padding: 14px 22px;
-  background: linear-gradient(90deg, #0e1735, #0c1430);
+  background: linear-gradient(90deg, #007e7a, #003e3d);
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
 
 .brand{
   display: flex; align-items: center; gap: 12px;
 }
-.brand__logo{
-  width: 36px; height: 36px; border-radius: 8px;
-  background: linear-gradient(145deg, #1c2f6b, #0b1e49);
-  box-shadow: 0 6px 16px var(--shadow) inset, 0 2px 8px var(--shadow);
+.brand__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  overflow: hidden;      /* garante que a imagem fique dentro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.brand__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* mantém proporção do logo */
+}
+
+
 .brand__title{
   font-weight: 800; letter-spacing: .4px; font-size: 18px;
 }
@@ -60,9 +72,10 @@ body{
 .tv__main{
   display: grid;
   grid-template-columns: 2.2fr 1fr;
-  gap: 16px;
-  padding: 16px;
-  min-height: 0; /* permite overflow correcte em grid */
+  gap: 76px;
+  padding: 56px;
+  min-height: 720px
+  ; /* permite overflow correcte em grid */
 }
 
 .stage{
@@ -85,7 +98,8 @@ body{
   height: 100%;
   display: block;
   aspect-ratio: 16/9;         /* mantém proporção agradável */
-  min-height: 280px;
+  min-height: 580
+px;
 }
 
 /* SIDEBAR */

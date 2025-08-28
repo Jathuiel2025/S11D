@@ -13,10 +13,11 @@
     <!-- Cabeçalho -->
     <header class="tv__header">
       <div class="brand" role="banner">
-        <div class="brand__logo" aria-hidden="true"></div>
-        <div class="brand__title">Painel de Exibição</div>
+        <div class="brand_logo" aria-hidden="true"></div>
+        <div class="brand__title">Painel de Performance - Squad Mina - Britagem Compactos</div> 
       </div>
       <div class="status">
+      
         <div class="status__pill status__pill--ok" aria-label="status do sistema">Online</div>
         <div class="status__clock" id="clock" aria-label="hora atual">--:--</div>
       </div>
@@ -28,8 +29,9 @@
         <!-- Vídeo YouTube (opcional) -->
         <div class="video">
           <iframe
-            width="560" height="315"
-            src="https://www.youtube.com/embed/wn2oLIbqzrQ?start=1&autoplay=1&mute=1&loop=1&playlist=wn2oLIbqzrQ&modestbranding=1&controls=0&rel=0"
+            width="1080" height="1920"
+          
+            src="https://www.youtube.com/embed/wn2oLIbqzrQ?start=1&autoplay=1&mute=1&loop=1&playlist=wn2oLIbqzrQ&modestbranding=1&rel=0"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -48,26 +50,10 @@
             <div class="card__kpi">PPC</div>
             <div class="card__value">92,4%</div>
             <div class="card__hint">Programação Cumprida na semana</div>
-          </li>
-          <li class="card">
-            <div class="card__kpi">IDP</div>
-            <div class="card__value">1,06</div>
-            <div class="card__hint">Desempenho de produção</div>
-          </li>
-          <li class="card">
-            <div class="card__kpi">IRRi</div>
-            <div class="card__value">78%</div>
-            <div class="card__hint">Restrições removidas (IWP)</div>
-          </li>
+          </li>               
         </ul>
 
-        <div class="notes">
-          <h3 class="notes__title">Notas rápidas</h3>
-          <ul class="notes__list" role="list">
-            <li>Reunião 6WLA às 14:00</li>
-            <li>Upload de modelos Metso às 16:30</li>
-            <li>Publicação do dashboard às 18:00</li>
-          </ul>
+      </ul>
         </div>
       </aside>
     </main>
@@ -106,15 +92,6 @@
       });
     });
 
-    // (Opcional) Auto-refresh do embed a cada X minutos
-    // Descomente caso queira manter S11D sempre fresco em TV
-    // setInterval(() => {
-    //   const embeds = document.querySelectorAll('.embed iframe');
-    //   embeds.forEach((f) => {
-    //     const src = f.src;
-    //     f.src = src; // reload simples
-    //   });
-    // }, 1000 * 60 * 15); // 15 minutos
   </script>
 </body>
 </html>
