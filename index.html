@@ -12,20 +12,20 @@
   <div class="tv">
     <!-- Cabeçalho -->
     <header class="tv__header">
-      <div class="brand">
+      <div class="brand" role="banner">
         <div class="brand__logo" aria-hidden="true"></div>
         <div class="brand__title">Painel de Exibição</div>
       </div>
       <div class="status">
-        <div class="status__pill status__pill--ok">Online</div>
+        <div class="status__pill status__pill--ok" aria-label="status do sistema">Online</div>
         <div class="status__clock" id="clock" aria-label="hora atual">--:--</div>
       </div>
     </header>
 
     <!-- Conteúdo principal: Vídeo + Lateral -->
     <main class="tv__main">
-      <section class="stage">
-        <!-- Troque o ID do vídeo abaixo se quiser outro -->
+      <section class="stage" aria-label="área principal de exibição">
+        <!-- Vídeo YouTube (opcional) -->
         <div class="video">
           <iframe
             width="560" height="315"
@@ -37,11 +37,13 @@
             allowfullscreen>
           </iframe>
         </div>
+
+    
       </section>
 
-      <aside class="sidebar">
+      <aside class="sidebar" aria-label="painel lateral">
         <h2 class="sidebar__title">Destaques</h2>
-        <ul class="cards">
+        <ul class="cards" role="list">
           <li class="card">
             <div class="card__kpi">PPC</div>
             <div class="card__value">92,4%</div>
@@ -61,7 +63,7 @@
 
         <div class="notes">
           <h3 class="notes__title">Notas rápidas</h3>
-          <ul class="notes__list">
+          <ul class="notes__list" role="list">
             <li>Reunião 6WLA às 14:00</li>
             <li>Upload de modelos Metso às 16:30</li>
             <li>Publicação do dashboard às 18:00</li>
@@ -73,9 +75,46 @@
     <!-- Rodapé tipo ticker -->
     <footer class="tv__footer" aria-live="polite">
       <div class="ticker">
-        <div class="ticker__track">
+        <div class="ticker__track" id="tickerTrack">
           <span>📌 Aviso: Mantenha o navegador em tela cheia (F11).&nbsp;&nbsp;&nbsp;</span>
           <span>🚧 Materiais críticos: CWP-221-S em acompanhamento.&nbsp;&nbsp;&nbsp;</span>
           <span>✅ Integração BIM 4D rodando conforme cronograma.&nbsp;&nbsp;&nbsp;</span>
         </div>
       </div>
+    </footer>
+  </div>
+
+  <script>
+    // Relógio em tempo real (HH:MM)
+    function updateClock() {
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hh}:${mm}`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000 * 30); // atualiza a cada 30s
+
+    // Reinício suave do ticker (mantém loop caso perca animação)
+    const ticker = document.getElementById('tickerTrack');
+    ticker.addEventListener('animationend', () => {
+      // força reflow para reiniciar a animação
+      ticker.style.animation = 'none';
+      // Próximo frame
+      requestAnimationFrame(() => {
+        ticker.style.animation = '';
+      });
+    });
+
+    // (Opcional) Auto-refresh do embed a cada X minutos
+    // Descomente caso queira manter S11D sempre fresco em TV
+    // setInterval(() => {
+    //   const embeds = document.querySelectorAll('.embed iframe');
+    //   embeds.forEach((f) => {
+    //     const src = f.src;
+    //     f.src = src; // reload simples
+    //   });
+    // }, 1000 * 60 * 15); // 15 minutos
+  </script>
+</body>
+</html>
