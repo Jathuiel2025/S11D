@@ -1,0 +1,175 @@
+:root{
+  --bg: #0b1020;           /* fundo escuro para TV */
+  --card: #111935;         /* cartões */
+  --ink: #e9eefc;          /* texto claro */
+  --muted: #a8b2d1;        /* texto secundário */
+  --brand: #007E7A;        /* azul brand sugerido */
+  --ok: #1aa36f;
+  --shadow: rgba(0,0,0,.25);
+}
+
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(1200px 600px at 20% 0%, #0f1640 0%, var(--bg) 55%);
+}
+
+/* GRID PRINCIPAL */
+.tv{
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.tv__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  background: linear-gradient(90deg, #0e1735, #0c1430);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.brand{
+  display: flex; align-items: center; gap: 12px;
+}
+.brand__logo{
+  width: 36px; height: 36px; border-radius: 8px;
+  background: linear-gradient(145deg, #1c2f6b, #0b1e49);
+  box-shadow: 0 6px 16px var(--shadow) inset, 0 2px 8px var(--shadow);
+}
+.brand__title{
+  font-weight: 800; letter-spacing: .4px; font-size: 18px;
+}
+
+.status{
+  display: flex; align-items: center; gap: 12px;
+}
+.status__pill{
+  padding: 6px 10px; border-radius: 999px; font-weight: 600; font-size: 12px;
+  background: #394058; color: #dfe6ff; border: 1px solid rgba(255,255,255,.08);
+}
+.status__pill--ok{ background: color-mix(in srgb, var(--ok) 30%, #1b3d2f); border-color: rgba(255,255,255,.12); }
+.status__clock{ font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: .6px; }
+
+/* MAIN */
+.tv__main{
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  min-height: 0; /* permite overflow correcte em grid */
+}
+
+.stage{
+  display: grid;
+  grid-template-rows: 1fr 1fr; /* vídeo em cima, embed embaixo */
+  gap: 16px;
+  min-height: 0;
+}
+
+.video, .embed{
+  background: #0f1838;
+  border-radius: 14px;
+  box-shadow: 0 12px 24px var(--shadow);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.video iframe, .embed iframe{
+  width: 100%;
+  height: 100%;
+  display: block;
+  aspect-ratio: 16/9;         /* mantém proporção agradável */
+  min-height: 280px;
+}
+
+/* SIDEBAR */
+.sidebar{
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 14px;
+  min-height: 0;
+}
+
+.sidebar__title{
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #dfe6ff;
+}
+
+.cards{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  list-style: none; padding: 0; margin: 0;
+}
+
+.card{
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 8px 16px var(--shadow);
+  display: grid; gap: 6px;
+  min-width: 0;
+}
+.card__kpi{ font-weight: 700; font-size: 13px; color: #a9c4ff; letter-spacing: .3px; }
+.card__value{ font-weight: 800; font-size: 22px; line-height: 1.1; }
+.card__hint{ color: var(--muted); font-size: 12px; }
+
+/* NOTES */
+.notes{
+  background: #0e1735;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 8px 16px var(--shadow);
+  overflow: auto;
+}
+.notes__title{ margin: 0 0 6px 0; font-size: 14px; }
+.notes__list{ margin: 0; padding-left: 18px; color: var(--muted); }
+
+/* FOOTER / TICKER */
+.tv__footer{
+  background: linear-gradient(90deg, #0f1738, #0b122b);
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 8px 0;
+}
+.ticker{
+  overflow: hidden;
+  position: relative;
+}
+.ticker__track{
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: tickerMove 40s linear infinite;
+  will-change: transform;
+  font-weight: 600;
+  color: #dfe6ff;
+}
+@keyframes tickerMove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* RESPONSIVO */
+@media (max-width: 1200px){
+  .tv__main{ grid-template-columns: 1.6fr 1fr; }
+  .cards{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px){
+  .tv__main{ grid-template-columns: 1fr; }
+  .stage{ grid-template-rows: 1fr; }
+  .embed iframe{ min-height: 360px; }
+  .cards{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px){
+  .cards{ grid-template-columns: repeat(2, 1fr); }
+}
