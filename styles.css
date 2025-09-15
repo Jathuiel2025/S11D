@@ -1,5 +1,5 @@
 :root{
-  --bg: #007e7a;           /* fundo escuro para TV */
+  --bg: #007e7a;           /* fundo escuro */
   --card: #003e3d;         /* cartões */
   --ink: #f6f6f6;          /* texto claro */
   --muted: ##003e3d;        /* texto secundário */
@@ -18,10 +18,10 @@ body{
 }
 
 /* GRID PRINCIPAL */
-.tv{
+.Cabeçalho{
   display: grid;
   grid-template-rows: auto 1fr auto;
-  height: 145vh;
+  height: 10vh;
   overflow: hidden;
 }
 
@@ -31,42 +31,22 @@ body{
   justify-content: space-between;
   padding: 14px 22px;
   background: linear-gradient(90deg, #007e7a, #003e3d);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  border-bottom: 12
+  px solid rgba(255,255,255,.06);
 }
 
-.brand{
-  display: flex; align-items: center; gap: 12px;
-}
-.brand__logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  overflow: hidden;      /* garante que a imagem fique dentro */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.brand_logo_img img{
+  max-height: 48px;   /* controla a altura da logo */
+  width: auto;        /* mantém a proporção */
+  object-fit: contain; /* garante que a imagem não corte */
 }
 
-.brand__logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* mantém proporção do logo */
-}
 
 
 .brand__title{
-  font-weight: 800; letter-spacing: .4px; font-size: 18px;
+  font-weight: 800; letter-spacing: .4px; font-size: 24px;
 }
 
-.status{
-  display: flex; align-items: center; gap: 12px;
-}
-.status__pill{
-  padding: 6px 10px; border-radius: 999px; font-weight: 600; font-size: 12px;
-  background: #394058; color: #dfe6ff; border: 1px solid rgba(255,255,255,.08);
-}
-.status__pill--ok{ background: color-mix(in srgb, var(--ok) 30%, #1b3d2f); border-color: rgba(255,255,255,.12); }
-.status__clock{ font-variant-numeric: tabular-nums; font-weight: 700; letter-spacing: .6px; }
 
 /* MAIN */
 .tv__main{
@@ -78,15 +58,8 @@ body{
   ; /* permite overflow correcte em grid */
 }
 
-.stage{
-  display: grid;
-  grid-template-rows: 1fr 1fr; /* vídeo em cima, embed embaixo */
-  gap: 16px;
-  min-height: 0;
-}
-
 .video, .embed{
-  background: #0f1838;
+  background: #007E7A;
   border-radius: 14px;
   box-shadow: 0 12px 24px var(--shadow);
   overflow: hidden;
@@ -125,17 +98,7 @@ px;
 }
 
 
-/* NOTES */
-.notes{
-  background: #0e1735;
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 8px 16px var(--shadow);
-  overflow: auto;
-}
-.notes__title{ margin: 0 0 6px 0; font-size: 14px; }
-.notes__list{ margin: 0; padding-left: 18px; color: var(--muted); }
+
 
 /* FOOTER / TICKER */
 .tv__footer{
